@@ -91,3 +91,76 @@ function categoryExists(int $id): bool
     $stmt->execute([$id]);
     return (bool) $stmt->fetchColumn();
 }
+
+function getAllNotes(): array
+{
+    global $pdo;
+    $stmt = $pdo->prepare(
+        'SELECT n.id, n.title, n.content, n.created_at, n.updated_at, c.name AS category_name, c.id AS category_id
+         FROM notes n
+         JOIN categories c ON n.category_id = c.id
+         ORDER BY n.updated_at DESC'
+    );
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
+
+function getAllCategories(): array
+{
+    global $pdo;
+    $stmt = $pdo->query('SELECT id, name FROM categories ORDER BY name ASC');
+    return $stmt->fetchAll();
+}
+
+function getNoteById(int $id): ?array
+{
+    global $pdo;
+    $stmt = $pdo->prepare(
+        'SELECT n.id, n.title, n.content, n.created_at, n.updated_at, c.name AS category_name, c.id AS category_id
+         FROM notes n
+         JOIN categories c ON n.category_id = c.id
+         WHERE n.id = ? LIMIT 1'
+    );
+    $stmt->execute([$id]);
+    $result = $stmt->fetch();
+    return $result ?: null;
+}
+
+function createNote(string $title, string $content, int $categoryId): bool
+{
+    global $pdo;
+    try {
+        $stmt = $pdo->prepare(
+            'INSERT INTO notes (title, content, category_id, created_at, updated_at)
+             VALUES (?, ?, ?, NOW(), NOW())'
+        );
+        return $stmt->execute([$title, $content, $categoryId]);
+    } catch (PDOException $e) {
+        return false;
+    }
+}
+
+function updateNote(int $id, string $title, string $content, int $categoryId): bool
+{
+    global $pdo;
+    try {
+        $stmt = $pdo->prepare(
+            'UPDATE notes SET title = ?, content = ?, category_id = ?, updated_at = NOW()
+             WHERE id = ?'
+        );
+        return $stmt->execute([$title, $content, $categoryId, $id]);
+    } catch (PDOException $e) {
+        return false;
+    }
+}
+
+function deleteNote(int $id): bool
+{
+    global $pdo;
+    try {
+        $stmt = $pdo->prepare('DELETE FROM notes WHERE id = ?');
+        return $stmt->execute([$id]);
+    } catch (PDOException $e) {
+        return false;
+    }
+}
