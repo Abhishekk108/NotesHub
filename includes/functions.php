@@ -164,3 +164,70 @@ function deleteNote(int $id): bool
         return false;
     }
 }
+
+function getCategoryById(int $id): ?array
+{
+    global $pdo;
+    $stmt = $pdo->prepare(
+        'SELECT c.id, c.name, c.created_at, COUNT(n.id) AS note_count
+         FROM categories c
+         LEFT JOIN notes n ON c.id = n.category_id
+         WHERE c.id = ?
+         GROUP BY c.id'
+    );
+    $stmt->execute([$id]);
+    $result = $stmt->fetch();
+    return $result ?: null;
+}
+
+function getCategoriesWithStats(): array
+{
+    global $pdo;
+    $stmt = $pdo->query(
+        'SELECT c.id, c.name, c.created_at, COUNT(n.id) AS note_count
+         FROM categories c
+         LEFT JOIN notes n ON c.id = n.category_id
+         GROUP BY c.id
+         ORDER BY c.name ASC'
+    );
+    return $stmt->fetchAll();
+}
+
+function createCategory(string $name): bool
+{
+    global $pdo;
+    try {
+        $stmt = $pdo->prepare(
+            'INSERT INTO categories (name, created_at)
+             VALUES (?, NOW())'
+        );
+        return $stmt->execute([$name]);
+    } catch (PDOException $e) {
+        return false;
+    }
+}
+
+function updateCategory(int $id, string $name): bool
+{
+    global $pdo;
+    try {
+        $stmt = $pdo->prepare(
+            'UPDATE categories SET name = ?
+             WHERE id = ?'
+        );
+        return $stmt->execute([$name, $id]);
+    } catch (PDOException $e) {
+        return false;
+    }
+}
+
+function deleteCategory(int $id): bool
+{
+    global $pdo;
+    try {
+        $stmt = $pdo->prepare('DELETE FROM categories WHERE id = ?');
+        return $stmt->execute([$id]);
+    } catch (PDOException $e) {
+        return false;
+    }
+}
