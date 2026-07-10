@@ -1,0 +1,267 @@
+/* ===================================
+   Dashboard Styles
+   Used by: index.php (homepage)
+   Stats grid, recent notes list
+   =================================== */
+
+.dashboard {
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* Dashboard Header */
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.dashboard-header h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+.dashboard-header p {
+    font-size: 1.125rem;
+    color: var(--text-light);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Statistics Grid */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    text-align: center;
+    border-top: 4px solid var(--primary-color);
+}
+
+.stat-card:last-child {
+    border-top-color: var(--secondary-color);
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.stat-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.stat-card h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+/* Recent Notes Section */
+
+.recent-section {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.section-header h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.view-all {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.view-all:hover {
+    color: var(--primary-dark);
+    transform: translateX(4px);
+}
+
+/* Recent Notes List */
+
+.recent-notes {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.note-item {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.02) 0%, rgba(139, 92, 246, 0.02) 100%);
+}
+
+.note-item:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    transform: translateX(4px);
+}
+
+.note-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+    gap: 1rem;
+}
+
+.note-header h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    flex: 1;
+}
+
+.note-header h4 a {
+    color: var(--text-dark);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.note-header h4 a:hover {
+    color: var(--primary-color);
+}
+
+.note-date {
+    color: var(--text-light);
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.note-meta {
+    margin-bottom: 1rem;
+}
+
+.note-preview {
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+}
+
+.note-actions {
+    display: flex;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.link-btn {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+}
+
+.link-btn:hover {
+    background-color: rgba(37, 99, 235, 0.1);
+    color: var(--primary-dark);
+}
+
+/* ===================================
+   Responsive - Dashboard
+   =================================== */
+
+@media (max-width: 768px) {
+    .dashboard-header h2 {
+        font-size: 1.875rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .note-header {
+        flex-direction: column;
+    }
+
+    .note-date {
+        width: 100%;
+    }
+
+    .note-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .link-btn {
+        display: block;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .dashboard-header p {
+        font-size: 1rem;
+    }
+
+    .stat-icon {
+        font-size: 2rem;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .recent-section {
+        padding: 1.5rem;
+    }
+
+    .note-item {
+        padding: 1rem;
+    }
+}
