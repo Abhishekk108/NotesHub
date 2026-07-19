@@ -11,28 +11,34 @@ include __DIR__ . '/includes/header.php';
 
     <div class="stats-grid">
         <div class="stat-card">
-            <div class="stat-icon">📝</div>
-            <h3>Total Notes</h3>
-            <p class="stat-number"><?php echo number_format(getTotalNotes()); ?></p>
+            <div class="stat-icon-wrap">📝</div>
+            <div class="stat-body">
+                <h3>Total Notes</h3>
+                <p class="stat-number"><?php echo number_format(getTotalNotes()); ?></p>
+            </div>
         </div>
         <div class="stat-card">
-            <div class="stat-icon">📂</div>
-            <h3>Total Categories</h3>
-            <p class="stat-number"><?php echo number_format(getTotalCategories()); ?></p>
+            <div class="stat-icon-wrap">📂</div>
+            <div class="stat-body">
+                <h3>Total Categories</h3>
+                <p class="stat-number"><?php echo number_format(getTotalCategories()); ?></p>
+            </div>
         </div>
     </div>
 
     <div class="recent-section">
         <div class="section-header">
             <h3>Recently Updated Notes</h3>
-            <a href="<?php echo BASE_URL; ?>notes/index.php" class="view-all">View All</a>
+            <a href="<?php echo BASE_URL; ?>notes/index.php" class="view-all">View All →</a>
         </div>
 
         <?php $recentNotes = getRecentNotes(5); ?>
         <?php if (empty($recentNotes)): ?>
             <div class="empty-state">
-                <p>No notes have been created yet.</p>
-                <a href="<?php echo BASE_URL; ?>notes/create.php" class="btn">Create Your First Note</a>
+                <span class="empty-icon">📝</span>
+                <h3>No notes yet</h3>
+                <p>Create your first note to get started.</p>
+                <a href="<?php echo BASE_URL; ?>notes/create.php" class="btn btn-primary">Create Your First Note</a>
             </div>
         <?php else: ?>
             <div class="recent-notes">

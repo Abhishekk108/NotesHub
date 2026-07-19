@@ -1,112 +1,147 @@
 /* ===================================
-   Form Styles
-   Used by: notes/create.php, notes/edit.php,
-            categories/create.php, categories/edit.php
+   Forms — create.php / edit.php
    =================================== */
 
 .form-section {
-    background: white;
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: var(--shadow-md);
-    max-width: 700px;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 2.25rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    max-width: 680px;
     margin: 0 auto;
+    animation: fadeIn 0.45s ease;
 }
 
+/* ── Form Header ─────────────────── */
+
 .form-header {
-    margin-bottom: 2rem;
+    margin-bottom: 1.875rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 2px solid var(--border-color);
 }
 
 .form-header h2 {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--text-dark);
-    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.2px;
+    margin-bottom: 0.25rem;
 }
 
 .form-header p {
     color: var(--text-light);
+    font-size: 0.9rem;
+    margin: 0;
 }
+
+/* ── Form Fields ─────────────────── */
 
 .form-container {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.375rem;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
+    gap: 0.375rem;
 }
 
 .form-group label {
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
     color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
 }
 
 .form-input {
-    padding: 0.75rem;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
-    font-size: 1rem;
+    padding: 0.7rem 0.875rem;
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius);
+    font-size: 0.95rem;
     font-family: inherit;
-    transition: all 0.3s ease;
+    color: var(--text-dark);
+    background: var(--light-bg);
+    transition: border-color var(--transition), box-shadow var(--transition),
+                background var(--transition);
+    width: 100%;
 }
 
 .form-input:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
 }
 
 .form-input.input-error {
     border-color: var(--danger-color);
+    background: var(--white);
 }
 
 .form-input.input-error:focus {
-    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    box-shadow: 0 0 0 3px rgba(220,38,38,0.1);
 }
 
 .form-textarea {
     resize: vertical;
-    min-height: 200px;
-    padding: 1rem;
+    min-height: 210px;
+    padding: 0.875rem;
+    line-height: 1.65;
 }
+
+/* ── Field helpers ───────────────── */
 
 .error-message {
     color: var(--danger-color);
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
+    font-size: 0.8rem;
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
 }
 
 .form-hint {
-    color: var(--text-light);
-    font-size: 0.8rem;
-    margin-top: 0.25rem;
+    color: var(--text-muted);
+    font-size: 0.78rem;
 }
+
+/* Character counter */
+.char-counter {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-align: right;
+    transition: color var(--transition);
+}
+
+.char-counter.near-limit  { color: var(--warning-color); }
+.char-counter.at-limit    { color: var(--danger-color); font-weight: 600; }
+
+/* ── Form Actions ────────────────── */
 
 .form-actions {
     display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+    padding-top: 1.375rem;
+    border-top: 2px solid var(--border-color);
 }
 
+.form-actions .btn,
 .form-actions .btn-primary,
 .form-actions .btn-secondary {
     flex: 1;
-    text-align: center;
-    padding: 0.75rem 1.5rem;
+    justify-content: center;
 }
 
-/* ===================================
-   Responsive - Forms
-   =================================== */
+/* ── Responsive ──────────────────── */
 
 @media (max-width: 768px) {
     .form-section {
-        padding: 1.5rem;
+        padding: 1.5rem 1.25rem;
         margin: 0;
     }
 
@@ -114,6 +149,7 @@
         flex-direction: column;
     }
 
+    .form-actions .btn,
     .form-actions .btn-primary,
     .form-actions .btn-secondary {
         width: 100%;
