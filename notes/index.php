@@ -2,7 +2,14 @@
 require_once __DIR__ . '/../includes/functions.php';
 include __DIR__ . '/../includes/header.php';
 
-$notes = getAllNotes();
+// Read and sanitise filter inputs
+$searchQuery = isset($_GET['q'])           ? trim($_GET['q'])           : '';
+$categoryId  = isset($_GET['category_id']) ? (int)$_GET['category_id'] : 0;
+
+$notes      = searchNotes($searchQuery, $categoryId);
+$categories = getAllCategories();
+
+$isFiltered = $searchQuery !== '' || $categoryId > 0;
 ?>
 
 <section class="notes-section">
@@ -14,13 +21,69 @@ $notes = getAllNotes();
         <a href="<?php echo BASE_URL; ?>notes/create.php" class="btn btn-primary">+ Create Note</a>
     </div>
 
-    <?php if (empty($notes)): ?>
-        <div class="empty-state">
-            <div class="empty-icon">📝</div>
-            <h3>No notes yet</h3>
-            <p>Start by creating your first note.</p>
-            <a href="<?php echo BASE_URL; ?>notes/create.php" class="btn btn-primary">Create Your First Note</a>
+    <!-- Search & Filter Bar -->
+    <form method="GET" class="search-bar" role="search">
+        <div class="search-input-wrap">
+            <span class="search-icon">🔍</span>
+            <input
+                type="text"
+                name="q"
+                value="<?php echo sanitize($searchQuery); ?>"
+                placeholder="Search by title or content…"
+                class="search-input"
+                aria-label="Search notes"
+            >
         </div>
+
+        <select name="category_id" class="search-select" aria-label="Filter by category">
+            <option value="0">All Categories</option>
+            <?php foreach ($categories as $cat): ?>
+                <option value="<?php echo $cat['id']; ?>" <?php echo $categoryId === (int)$cat['id'] ? 'selected' : ''; ?>>
+                    <?php echo sanitize($cat['name']); ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+
+        <button type="submit" class="btn btn-primary search-btn">Search</button>
+
+        <?php if ($isFiltered): ?>
+            <a href="<?php echo BASE_URL; ?>notes/index.php" class="btn btn-secondary search-btn">Clear</a>
+        <?php endif; ?>
+    </form>
+
+    <!-- Results summary when filtering -->
+    <?php if ($isFiltered): ?>
+        <p class="search-results-summary">
+            <?php echo count($notes); ?> <?php echo count($notes) === 1 ? 'result' : 'results'; ?>
+            <?php if ($searchQuery !== ''): ?>
+                for <strong>&ldquo;<?php echo sanitize($searchQuery); ?>&rdquo;</strong>
+            <?php endif; ?>
+            <?php if ($categoryId > 0): ?>
+                <?php foreach ($categories as $cat): ?>
+                    <?php if ((int)$cat['id'] === $categoryId): ?>
+                        in category <strong><?php echo sanitize($cat['name']); ?></strong>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </p>
+    <?php endif; ?>
+
+    <?php if (empty($notes)): ?>
+        <?php if ($isFiltered): ?>
+            <div class="empty-state">
+                <div class="empty-icon">🔍</div>
+                <h3>No notes found</h3>
+                <p>Try a different search term or category filter.</p>
+                <a href="<?php echo BASE_URL; ?>notes/index.php" class="btn btn-secondary">Clear Filters</a>
+            </div>
+        <?php else: ?>
+            <div class="empty-state">
+                <div class="empty-icon">📝</div>
+                <h3>No notes yet</h3>
+                <p>Start by creating your first note.</p>
+                <a href="<?php echo BASE_URL; ?>notes/create.php" class="btn btn-primary">Create Your First Note</a>
+            </div>
+        <?php endif; ?>
     <?php else: ?>
         <div class="notes-grid">
             <?php foreach ($notes as $note): ?>

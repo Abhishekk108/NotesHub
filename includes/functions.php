@@ -105,6 +105,44 @@ function getAllNotes(): array
     return $stmt->fetchAll();
 }
 
+function searchNotes(string $query = '', int $categoryId = 0): array
+{
+    global $pdo;
+
+    $conditions = [];
+    $params     = [];
+
+    if ($query !== '') {
+    $conditions[] = '(n.title LIKE :title_query OR n.content LIKE :content_query)';
+
+    $params[':title_query'] = '%' . $query . '%';
+    $params[':content_query'] = '%' . $query . '%';
+}
+
+    if ($categoryId > 0) {
+        $conditions[] = 'n.category_id = :category_id';
+        $params[':category_id'] = $categoryId;
+    }
+
+    $where = $conditions ? 'WHERE ' . implode(' AND ', $conditions) : '';
+
+    $stmt = $pdo->prepare(
+        "SELECT n.id, n.title, n.content, n.created_at, n.updated_at,
+                c.name AS category_name, c.id AS category_id
+         FROM notes n
+         JOIN categories c ON n.category_id = c.id
+         {$where}
+         ORDER BY n.updated_at DESC"
+    );
+
+    foreach ($params as $key => $value) {
+        $stmt->bindValue($key, $value);
+    }
+
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
+
 function getAllCategories(): array
 {
     global $pdo;
