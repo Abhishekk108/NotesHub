@@ -109,6 +109,14 @@
     color: var(--text-dark);
 }
 
+/* Visually separate the sort dropdown from the category filter */
+
+.search-select + .search-select {
+    border-left: 2px solid var(--border-color);
+    padding-left: 1rem;
+    margin-left: 0.25rem;
+}
+
 /* Note Card */
 
 .note-card {
@@ -455,6 +463,12 @@
     .search-select {
         min-width: unset;
         width: 100%;
+    }
+
+    .search-select + .search-select {
+        border-left: none;
+        padding-left: 0.875rem;
+        margin-left: 0;
     }
 
     .search-btn {

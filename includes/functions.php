@@ -105,7 +105,7 @@ function getAllNotes(): array
     return $stmt->fetchAll();
 }
 
-function searchNotes(string $query = '', int $categoryId = 0): array
+function searchNotes(string $query = '', int $categoryId = 0, string $sort = 'latest'): array
 {
     global $pdo;
 
@@ -113,11 +113,10 @@ function searchNotes(string $query = '', int $categoryId = 0): array
     $params     = [];
 
     if ($query !== '') {
-    $conditions[] = '(n.title LIKE :title_query OR n.content LIKE :content_query)';
-
-    $params[':title_query'] = '%' . $query . '%';
-    $params[':content_query'] = '%' . $query . '%';
-}
+        $conditions[] = '(n.title LIKE :title_query OR n.content LIKE :content_query)';
+        $params[':title_query']   = '%' . $query . '%';
+        $params[':content_query'] = '%' . $query . '%';
+    }
 
     if ($categoryId > 0) {
         $conditions[] = 'n.category_id = :category_id';
@@ -126,13 +125,20 @@ function searchNotes(string $query = '', int $categoryId = 0): array
 
     $where = $conditions ? 'WHERE ' . implode(' AND ', $conditions) : '';
 
+    // Whitelist sort options — never interpolate user input directly
+    $orderBy = match ($sort) {
+        'oldest'  => 'n.updated_at ASC',
+        'alpha'   => 'n.title ASC',
+        default   => 'n.updated_at DESC',   // 'latest'
+    };
+
     $stmt = $pdo->prepare(
         "SELECT n.id, n.title, n.content, n.created_at, n.updated_at,
                 c.name AS category_name, c.id AS category_id
          FROM notes n
          JOIN categories c ON n.category_id = c.id
          {$where}
-         ORDER BY n.updated_at DESC"
+         ORDER BY {$orderBy}"
     );
 
     foreach ($params as $key => $value) {
