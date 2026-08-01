@@ -1,16 +1,18 @@
     </main>
 
-    <footer class="site-footer">
-        <div class="container">
-            <p>&copy; <?php echo date('Y'); ?> <?php echo htmlspecialchars(APP_NAME); ?>. All rights reserved.</p>
+    <footer class="bg-slate-800 text-slate-400 text-center py-6 mt-auto">
+        <div class="max-w-6xl mx-auto px-6">
+            <p class="text-sm">&copy; <?php echo date('Y'); ?> <?php echo htmlspecialchars(APP_NAME); ?>. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Scroll-to-top button -->
-    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top" title="Back to top">↑</button>
-
-    <!-- Toast notification container -->
-    <div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="true"></div>
+    <!-- Scroll-to-top -->
+    <button id="scrollTop"
+            class="fixed bottom-6 right-6 w-11 h-11 bg-blue-600 text-white rounded-full shadow-lg
+                   flex items-center justify-center text-lg font-bold
+                   opacity-0 pointer-events-none transition-opacity duration-300
+                   hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            aria-label="Scroll to top" title="Back to top">↑</button>
 
     <script src="<?php echo BASE_URL; ?>assets/js/script.js"></script>
 </body>
