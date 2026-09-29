@@ -1,8 +1,8 @@
     </main>
 
-    <footer class="bg-slate-800 text-slate-400 text-center py-6 mt-auto">
-        <div class="max-w-6xl mx-auto px-6">
-            <p class="text-sm">&copy; <?php echo date('Y'); ?> <?php echo htmlspecialchars(APP_NAME); ?>. All rights reserved.</p>
+    <footer class="site-footer">
+        <div>
+            <p>&copy; <?php echo date('Y'); ?> <?php echo htmlspecialchars(APP_NAME); ?>. All rights reserved.</p>
         </div>
     </footer>
 
