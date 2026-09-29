@@ -1,11 +1,13 @@
 :root {
-    --app-blue: #2563eb;
-    --app-blue-dark: #1d4ed8;
-    --app-text: #1f2937;
-    --app-muted: #6b7280;
-    --app-border: #e5e7eb;
-    --app-surface: #ffffff;
-    --app-page: #f8fafc;
+    --app-blue: #7c9a7a;
+    --app-blue-dark: #6b8a69;
+    --app-heading: #2f3a33;
+    --app-text: #5c665f;
+    --app-muted: #5c665f;
+    --app-border: #d6ddd4;
+    --app-surface: #e8ede7;
+    --app-card: #fafaf7;
+    --app-page: #f5f5f0;
 }
 
 .app-body {
@@ -38,7 +40,7 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    color: var(--app-text);
+    color: var(--app-heading);
     font-size: 18px;
     font-weight: 700;
     text-decoration: none;
@@ -66,7 +68,7 @@
     gap: 8px;
     padding: 0 12px;
     border-radius: 8px;
-    color: #4b5563;
+    color: var(--app-text);
     font-size: 14px;
     font-weight: 500;
     text-decoration: none;
@@ -74,7 +76,7 @@
 
 .nav-menu a:hover,
 .nav-menu a[aria-current="page"]:not(.nav-primary) {
-    background: #eff6ff;
+    background: #dce5db;
     color: var(--app-blue);
 }
 
@@ -99,7 +101,7 @@
     gap: 5px;
     border: 1px solid var(--app-border);
     border-radius: 8px;
-    background: #fff;
+    background: var(--app-card);
     cursor: pointer;
 }
 
@@ -107,7 +109,7 @@
     width: 17px;
     height: 2px;
     border-radius: 2px;
-    background: #4b5563;
+    background: var(--app-text);
 }
 
 .app-main {
@@ -123,7 +125,7 @@
 
 .dashboard-heading h2 {
     margin: 0 0 4px;
-    color: var(--app-text);
+    color: var(--app-heading);
     font-size: 28px;
     font-weight: 700;
     line-height: 1.25;
@@ -147,7 +149,7 @@
     padding: 20px 22px;
     border: 1px solid var(--app-border);
     border-radius: 12px;
-    background: var(--app-surface);
+    background: var(--app-card);
 }
 
 .stat-label {
@@ -166,7 +168,7 @@
 
 .stat-value {
     margin: 12px 0 0;
-    color: var(--app-text);
+    color: var(--app-heading);
     font-size: 32px;
     font-weight: 700;
     line-height: 1;
@@ -186,7 +188,7 @@
 
 .recent-heading h3 {
     margin: 0;
-    color: var(--app-text);
+    color: var(--app-heading);
     font-size: 18px;
     font-weight: 650;
 }
@@ -214,7 +216,7 @@
     padding: 18px 20px;
     border: 1px solid var(--app-border);
     border-radius: 12px;
-    background: var(--app-surface);
+    background: var(--app-card);
 }
 
 .note-title-row {
@@ -227,7 +229,7 @@
 .note-title-row h4 {
     min-width: 0;
     margin: 0;
-    color: var(--app-text);
+    color: var(--app-heading);
     font-size: 16px;
     font-weight: 650;
     line-height: 1.4;
@@ -244,7 +246,7 @@
 
 .note-title-row time {
     flex-shrink: 0;
-    color: #9ca3af;
+    color: var(--app-muted);
     font-size: 12px;
     white-space: nowrap;
 }
@@ -263,18 +265,18 @@
 }
 
 .category-study {
-    background: #eff6ff;
-    color: #1d4ed8;
+    background: #e8ede7;
+    color: #50694f;
 }
 
 .category-personal {
-    background: #ecfdf5;
-    color: #047857;
+    background: #edf1eb;
+    color: #5c665f;
 }
 
 .category-other {
-    background: #f3f4f6;
-    color: #4b5563;
+    background: #f0f1ed;
+    color: #5c665f;
 }
 
 .note-preview {
@@ -292,7 +294,7 @@
     display: flex;
     gap: 8px;
     padding-top: 12px;
-    border-top: 1px solid #f1f3f5;
+    border-top: 1px solid #e8ede7;
 }
 
 .button {
@@ -309,12 +311,12 @@
 }
 
 .button-secondary {
-    background: #fff;
-    color: #4b5563;
+    background: var(--app-card);
+    color: var(--app-text);
 }
 
 .button-secondary:hover {
-    border-color: #bfdbfe;
+    border-color: var(--app-blue);
     color: var(--app-blue);
 }
 
@@ -333,12 +335,12 @@
     padding: 48px 20px;
     border: 1px solid var(--app-border);
     border-radius: 12px;
-    background: #fff;
+    background: var(--app-card);
     text-align: center;
 }
 
 .empty-state > .bi {
-    color: #9ca3af;
+    color: var(--app-muted);
     font-size: 24px;
 }
 
@@ -357,7 +359,7 @@
 .site-footer {
     padding: 18px 20px;
     border-top: 1px solid var(--app-border);
-    background: #fff;
+    background: var(--app-surface);
     color: var(--app-muted);
     text-align: center;
 }
@@ -389,7 +391,7 @@
         gap: 4px;
         padding: 12px 16px 16px;
         border-bottom: 1px solid var(--app-border);
-        background: #fff;
+        background: var(--app-surface);
     }
 
     #navMenu.open {
@@ -409,6 +411,67 @@
     .app-main {
         padding-top: 28px;
     }
+}
+
+/* Recolor existing Tailwind utilities used throughout the CRUD screens. */
+.app-body .bg-slate-50,
+.app-body .hover\:bg-slate-50:hover {
+    background-color: var(--app-page);
+}
+
+.app-body .bg-slate-100,
+.app-body .hover\:bg-slate-100:hover,
+.app-body .bg-blue-50,
+.app-body .hover\:bg-blue-50:hover {
+    background-color: var(--app-surface);
+}
+
+.app-body .bg-white {
+    background-color: var(--app-card);
+}
+
+.app-body .bg-blue-600 {
+    background-color: var(--app-blue);
+}
+
+.app-body .hover\:bg-blue-700:hover {
+    background-color: var(--app-blue-dark);
+}
+
+.app-body .text-slate-800,
+.app-body .text-slate-900 {
+    color: var(--app-heading);
+}
+
+.app-body .text-slate-700,
+.app-body .text-slate-600,
+.app-body .text-slate-500 {
+    color: var(--app-text);
+}
+
+.app-body .text-slate-400 {
+    color: #7a857c;
+}
+
+.app-body .text-blue-600,
+.app-body .hover\:text-blue-700:hover,
+.app-body .hover\:text-blue-800:hover {
+    color: var(--app-blue);
+}
+
+.app-body .border-slate-100,
+.app-body .border-slate-200,
+.app-body .border-slate-300 {
+    border-color: var(--app-border);
+}
+
+.app-body .border-blue-500,
+.app-body .focus\:border-blue-500:focus {
+    border-color: var(--app-blue);
+}
+
+.app-body .divide-slate-100 > :not(:first-child) {
+    border-color: var(--app-border);
 }
 
 @media (max-width: 540px) {
