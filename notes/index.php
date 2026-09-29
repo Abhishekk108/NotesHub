@@ -33,7 +33,7 @@ $sortLabels = ['latest' => 'Latest first', 'oldest' => 'Oldest first', 'alpha' =
       class="bg-white border border-slate-200 rounded-xl shadow-sm p-4 mb-5 flex flex-wrap items-center gap-3">
 
     <div class="flex items-center flex-1 min-w-48 bg-slate-50 border border-slate-200 rounded-lg px-3 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100 transition">
-        <span class="text-slate-400 mr-2 text-sm">🔍</span>
+        <i class="bi bi-search text-slate-400 mr-2 text-sm" aria-hidden="true"></i>
         <input type="text" name="q"
                value="<?php echo sanitize($searchQuery); ?>"
                placeholder="Search by title or content…"
@@ -97,7 +97,7 @@ $sortLabels = ['latest' => 'Latest first', 'oldest' => 'Oldest first', 'alpha' =
 <!-- Empty states -->
 <?php if (empty($notes)): ?>
     <div class="bg-white border-2 border-dashed border-slate-200 rounded-2xl text-center py-16 px-6">
-        <div class="text-5xl mb-4"><?php echo $isFiltered ? '🔍' : '📝'; ?></div>
+        <div class="text-2xl text-slate-400 mb-4"><i class="bi <?php echo $isFiltered ? 'bi-search' : 'bi-journal'; ?>" aria-hidden="true"></i></div>
         <h3 class="text-lg font-bold text-slate-700 mb-1">
             <?php echo $isFiltered ? 'No notes found' : 'No notes yet'; ?>
         </h3>

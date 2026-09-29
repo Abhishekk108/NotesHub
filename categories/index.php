@@ -19,7 +19,7 @@ $categories = getCategoriesWithStats();
 
 <?php if (empty($categories)): ?>
     <div class="bg-white border-2 border-dashed border-slate-200 rounded-2xl text-center py-16 px-6">
-        <div class="text-5xl mb-4">📂</div>
+        <div class="text-2xl text-slate-400 mb-4"><i class="bi bi-folder2-open" aria-hidden="true"></i></div>
         <h3 class="text-lg font-bold text-slate-700 mb-1">No categories yet</h3>
         <p class="text-slate-500 text-sm mb-5">Start by creating your first category.</p>
         <a href="<?php echo BASE_URL; ?>categories/create.php"
@@ -34,7 +34,7 @@ $categories = getCategoriesWithStats();
             <div class="bg-white border border-slate-200 rounded-2xl shadow-sm flex flex-col hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
 
                 <div class="p-5 flex-1">
-                    <div class="text-3xl mb-3">📁</div>
+                    <div class="text-xl text-blue-600 mb-3"><i class="bi bi-folder2" aria-hidden="true"></i></div>
                     <h3 class="text-base font-bold text-slate-800 mb-1 break-words"><?php echo sanitize($category['name']); ?></h3>
                     <p class="text-sm font-semibold text-blue-600 mb-1">
                         <?php echo $category['note_count']; ?> <?php echo $category['note_count'] === 1 ? 'note' : 'notes'; ?>

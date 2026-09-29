@@ -23,7 +23,7 @@ $note = getNoteById($noteId);
 if ($note === null) { ?>
     <div class="min-h-96 flex items-center justify-center">
         <div class="bg-white border-t-4 border-red-500 rounded-2xl shadow-sm p-10 text-center max-w-md w-full">
-            <div class="text-5xl mb-4">🔍</div>
+            <div class="text-2xl text-slate-400 mb-4"><i class="bi bi-search" aria-hidden="true"></i></div>
             <h2 class="text-xl font-bold text-red-600 mb-2">Note Not Found</h2>
             <p class="text-slate-500 text-sm mb-6">The note you're looking for has been deleted or doesn't exist.</p>
             <a href="<?php echo BASE_URL; ?>notes/index.php"
