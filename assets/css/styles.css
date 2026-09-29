@@ -1,13 +1,13 @@
 :root {
-    --app-blue: #7c9a7a;
-    --app-blue-dark: #6b8a69;
-    --app-heading: #2f3a33;
-    --app-text: #5c665f;
-    --app-muted: #5c665f;
-    --app-border: #d6ddd4;
-    --app-surface: #e8ede7;
-    --app-card: #fafaf7;
-    --app-page: #f5f5f0;
+    --app-blue: #c97c5d;
+    --app-blue-dark: #b86a4d;
+    --app-heading: #3f342d;
+    --app-text: #6b5e56;
+    --app-muted: #6b5e56;
+    --app-border: #e7ddd3;
+    --app-surface: #fffdf9;
+    --app-card: #fffdf9;
+    --app-page: #f7f3ee;
 }
 
 .app-body {
@@ -76,7 +76,7 @@
 
 .nav-menu a:hover,
 .nav-menu a[aria-current="page"]:not(.nav-primary) {
-    background: #dce5db;
+    background: #f3e8df;
     color: var(--app-blue);
 }
 
@@ -265,18 +265,18 @@
 }
 
 .category-study {
-    background: #e8ede7;
-    color: #50694f;
+    background: #f3e8df;
+    color: #80513e;
 }
 
 .category-personal {
-    background: #edf1eb;
-    color: #5c665f;
+    background: #f7eee7;
+    color: #6b5e56;
 }
 
 .category-other {
-    background: #f0f1ed;
-    color: #5c665f;
+    background: #f2ece6;
+    color: #6b5e56;
 }
 
 .note-preview {
@@ -294,7 +294,7 @@
     display: flex;
     gap: 8px;
     padding-top: 12px;
-    border-top: 1px solid #e8ede7;
+    border-top: 1px solid #e7ddd3;
 }
 
 .button {
@@ -450,7 +450,7 @@
 }
 
 .app-body .text-slate-400 {
-    color: #7a857c;
+    color: #8d7c70;
 }
 
 .app-body .text-blue-600,
